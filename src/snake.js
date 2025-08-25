@@ -8,6 +8,9 @@
  */
 function initSnake() {
   // A compléter
+  const StartX = 10;
+  const StartY = 10;
+  return [{ x: StartX, y: StartY }];
 }
 
 /**
@@ -23,7 +26,7 @@ function initSnake() {
  * @returns {{x: number, y: number}} - Un objet représentant les nouvelles coordonnées `x` et `y` de la tête du serpent après le déplacement.
  */
 function moveSnake() {
-  // A compléter
+  // A compléter  
 }
 
 /**
