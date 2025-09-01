@@ -46,6 +46,8 @@ function moveSnake(snake, direction, box) {
 function drawSnake(ctx, snake, box) {
   // A compléter
   ctx.fillStyle = "green";
-  snake.forEach()
+  for(let segment of snake){
+    ctx.fillRect(segment.x * box, segment.y * box, box, box)
+  }
 }
 export{initSnake, moveSnake, drawSnake}
