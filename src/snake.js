@@ -7,7 +7,6 @@
  * @returns {Array<{x: number, y: number}>} - Un tableau contenant un objet représentant la position du premier segment du serpent.
  */
 function initSnake() {
-  // A compléter
   const StartX = 10;
   const StartY = 10;
   return [{ x: StartX, y: StartY }];
@@ -25,8 +24,11 @@ function initSnake() {
  * @param {number} box - La taille d'une case de la grille en pixels, utilisée pour déterminer la distance de déplacement du serpent.
  * @returns {{x: number, y: number}} - Un objet représentant les nouvelles coordonnées `x` et `y` de la tête du serpent après le déplacement.
  */
-function moveSnake() {
-  // A compléter  
+function moveSnake(snake, direction, box) {
+  const head = { ...snake[0] }; // Copie de la tête actuelle du serpent
+  switch (direction){
+    
+  }
 }
 
 /**
