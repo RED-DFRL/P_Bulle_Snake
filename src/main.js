@@ -28,6 +28,8 @@ function startGame() {
 
 function draw() {
   drawFood(ctx, food, box)
+  drawSnake(ctx, snake, box);
+  drawScore(ctx, score)
 }
 
 startGame();
