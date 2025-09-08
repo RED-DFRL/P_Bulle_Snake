@@ -7,7 +7,7 @@
  * @returns {Array<{x: number, y: number}>} - Un tableau contenant un objet représentant la position du premier segment du serpent.
  */
 function initSnake() {
-  const StartX = 10;
+  const StartX = 9;
   const StartY = 10;
   return [{ x: StartX, y: StartY }];
 }
@@ -44,7 +44,6 @@ function moveSnake(snake, direction, box) {
  * @param {number} box - La taille d'une case de la grille en pixels, utilisée pour déterminer la taille de chaque segment du serpent.
  */
 function drawSnake(ctx, snake, box) {
-  // A compléter
   ctx.fillStyle = "green";
   for(let segment of snake){
     ctx.fillRect(segment.x * box, segment.y * box, box, box)
