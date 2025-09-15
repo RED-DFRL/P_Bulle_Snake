@@ -43,7 +43,7 @@ function handleDirectionChange(event, currentDirection) {
   }
 
   //Si aucune exeption est detecté change la direction
-  return currentDirection
+  return newDirection
 
 }
 export{handleDirectionChange}
