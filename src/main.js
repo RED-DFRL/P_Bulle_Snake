@@ -27,6 +27,12 @@ function startGame() {
 }
 
 function draw() {
+  //Reset du canvas avant de le redessiner
+  ctx.clearRect(0, 0, box, box)
+  //Initialisation du deplacment du serpent
+  snake = moveSnake(snake, direction, box);
+
+  //Dessin du serpent, Nourriture et score
   drawFood(ctx, food, box)
   drawSnake(ctx, snake, box);
   drawScore(ctx, score)
