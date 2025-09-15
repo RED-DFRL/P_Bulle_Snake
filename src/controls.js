@@ -11,14 +11,39 @@
  * @returns {string} - La nouvelle direction du serpent après traitement, ou la direction actuelle si le changement n'est pas valide.
  */
 function handleDirectionChange(event, currentDirection) {
-  // A compléter
   const key = event.key
+
+  //Liste des opposés des touches de direction
   const reverse ={
-    UP: "DOWN"
+    UP: "DOWN",
+    DOWN: "UP",
+    LEFT: "RIGHT",
+    RIGHT: "LEFT"
+  };
+
+  //Liste des touches de direction
+  const keyDirection = {
+    arrowUp: "UP",
+    arrowDown: "DOWN",
+    arrowLeft: "LEFT",
+    arrowRight: "RIGHT"
+  };
+
+  //Convertit la direction afin d'être comprehensible par le jeu
+  const newDirection = keyDirection[key]
+
+  //Si pas de changement de direction continue dans la même direction
+  if(!newDirection){
+    return currentDirection
+  }
+  //Si la direction choisie correspond a l'opposé continue dans la même direction pour eviter
+  //que le serpent se rentre sur soi-même
+  if(newDirection === reverse[currentDirection]){
+    return currentDirection
   }
 
-  const keyDirection = {
-    ArrowUp: "UP"
-  }
+  //Si aucune exeption est detecté change la direction
+  return currentDirection
+
 }
 export{handleDirectionChange}
