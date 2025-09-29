@@ -26,7 +26,7 @@ function initSnake() {
  */
 //A corriger serpent avance mais ne change pas direction et laisse une trainé verte
 function moveSnake(snake, direction, box) {
-  const head = { ...snake[0] }; // Copie de la tête actuelle du serpent
+  const head = { x: snake[0].x, y:snake[0].y }; // Copie de la tête actuelle du serpent
   switch (direction){
     case "UP":
       head.y -= 1;
