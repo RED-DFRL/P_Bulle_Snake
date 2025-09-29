@@ -23,10 +23,10 @@ function handleDirectionChange(event, currentDirection) {
 
   //Liste des touches de direction
   const keyDirection = {
-    arrowUp: "UP",
-    arrowDown: "DOWN",
-    arrowLeft: "LEFT",
-    arrowRight: "RIGHT"
+    ArrowUp: "UP",
+    ArrowDown: "DOWN",
+    ArrowLeft: "LEFT",
+    ArrowRight: "RIGHT"
   };
 
   //Convertit la direction afin d'être comprehensible par le jeu
