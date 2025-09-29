@@ -22,16 +22,24 @@ document.addEventListener("keydown", (event) => {
 function startGame() {
   snake = initSnake();
   food = generateFood(box, canvas);
-
   gameInterval = setInterval(draw, gameSpeed); // Stockage de l'identifiant de l'intervalle
 }
 
 function draw() {
   //Reset du canvas avant de le redessiner
-  ctx.clearRect(0, 0, box, box)
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
   //Initialisation du deplacment du serpent
   snake = moveSnake(snake, direction, box);
+  //Initialisation des collisions
+  const head = snake[0];
+  const body = snake.slice(1);
 
+  if (checkWallCollision(head, canvas, box) || checkCollision(head, body)){
+    clearInterval(gameInterval);
+    alert("Vous avez perdu")
+    return;
+  }
+  
   //Dessin du serpent, Nourriture et score
   drawFood(ctx, food, box)
   drawSnake(ctx, snake, box);

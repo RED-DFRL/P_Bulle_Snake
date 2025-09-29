@@ -24,7 +24,7 @@ function initSnake() {
  * @param {number} box - La taille d'une case de la grille en pixels, utilisée pour déterminer la distance de déplacement du serpent.
  * @returns {{x: number, y: number}} - Un objet représentant les nouvelles coordonnées `x` et `y` de la tête du serpent après le déplacement.
  */
-//A corriger serpent avance mais ne change pas direction et laisse une trainé verte
+//A corriger serpent laisse une trainé verte
 function moveSnake(snake, direction, box) {
   const head = { x: snake[0].x, y:snake[0].y }; // Copie de la tête actuelle du serpent
   switch (direction){
