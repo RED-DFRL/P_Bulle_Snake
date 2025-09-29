@@ -22,6 +22,8 @@ document.addEventListener("keydown", (event) => {
 function startGame() {
   snake = initSnake();
   food = generateFood(box, canvas);
+  direction = "RIGHT";
+  score = 0;
   gameInterval = setInterval(draw, gameSpeed); // Stockage de l'identifiant de l'intervalle
 }
 
@@ -36,7 +38,9 @@ function draw() {
 
   if (checkWallCollision(head, canvas, box) || checkCollision(head, body)){
     clearInterval(gameInterval);
-    alert("Vous avez perdu")
+    ctx.fillStyle = "red";
+    ctx.font = "30px Arial";
+    ctx.fillText("Vous avez perdu!", canvas.width/ 4, canvas.height / 2);
     return;
   }
   
