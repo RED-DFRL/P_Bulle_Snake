@@ -10,7 +10,7 @@
  * @param {Array<{x: number, y: number}>} snakeArray - Un tableau d'objets représentant les segments du serpent, où chaque objet contient des coordonnées `x` et `y`.
  * @returns {boolean} - Retourne `true` si la tête du serpent entre en collision avec un segment de son corps, sinon `false`.
  */
-function checkCollision() {
+function checkCollision(head, snakeArray) {
   for (let i = 0; i < snakeArray.length; i++) {
     // si la tête est sur la même case qu'un segment
     if (head.x === snakeArray[i].x && head.y === snakeArray[i].y) {

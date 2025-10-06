@@ -24,6 +24,7 @@ function startGame() {
   food = generateFood(box, canvas);
   direction = "RIGHT";
   score = 0;
+  clearInterval(gameInterval) //stoppe un potentiel ancient intervalle de jeux
   gameInterval = setInterval(draw, gameSpeed); // Stockage de l'identifiant de l'intervalle
 }
 
