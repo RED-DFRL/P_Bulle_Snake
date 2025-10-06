@@ -31,8 +31,11 @@ function startGame() {
 function draw() {
   //Reset du canvas avant de le redessiner
   ctx.clearRect(0, 0, canvas.width, canvas.height)
+
   //Initialisation du deplacment du serpent
-  snake = moveSnake(snake, direction, box);
+  const result = moveSnake(snake, direction, box, food);
+  snake = result.snake;
+
   //Initialisation des collisions
   const head = snake[0];
   const body = snake.slice(1);
@@ -43,6 +46,11 @@ function draw() {
     ctx.font = "30px Arial";
     ctx.fillText("Vous avez perdu!", canvas.width/ 4, canvas.height / 2);
     return;
+  }
+
+  if(result.ateFood) {
+    food = generateFood(box, canvas);
+    score += 10;
   }
   
   //Dessin du serpent, Nourriture et score

@@ -22,10 +22,11 @@ function initSnake() {
  * @param {Array<{x: number, y: number}>} snake - Le tableau représentant le serpent, où chaque élément est un segment avec des coordonnées `x` et `y`.
  * @param {string} direction - La direction actuelle du mouvement du serpent ("LEFT", "UP", "RIGHT", ou "DOWN").
  * @param {number} box - La taille d'une case de la grille en pixels, utilisée pour déterminer la distance de déplacement du serpent.
+ * @param {{x:number, y:number}} food - Coordonnées de la nourriture.
  * @returns {{x: number, y: number}} - Un objet représentant les nouvelles coordonnées `x` et `y` de la tête du serpent après le déplacement.
  */
 //A corriger serpent laisse une trainé verte
-function moveSnake(snake, direction, box) {
+function moveSnake(snake, direction, box, food) {
   const head = { x: snake[0].x, y:snake[0].y }; // Copie de la tête actuelle du serpent
   switch (direction){
     case "UP":
@@ -45,7 +46,17 @@ function moveSnake(snake, direction, box) {
   //Ajoute une case au serpent au debut du serpent
   snake.unshift(head);
 
-  return snake
+  //Vérifie que le snake a mangé de la nourriture¨
+  let ateFood = false;
+  if(head.x === food.x && head.y === food.y){
+    ateFood = true
+  } 
+  else{
+    //Si pas mangé la queue n'est pas gardé
+    snake.pop();
+  } 
+
+  return {snake, ateFood};
 }
 
 /**
