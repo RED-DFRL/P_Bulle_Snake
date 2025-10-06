@@ -14,49 +14,73 @@ let food;
 let direction = "RIGHT";
 let score = 0;
 let gameInterval; // Variable pour stocker l'identifiant de l'intervalle
+let isPaused = false //Variable pour 
 
+//Initialisation du deplacment du serpent
 document.addEventListener("keydown", (event) => {
   direction = handleDirectionChange(event, direction);
 });
 
-function startGame() {
-  snake = initSnake();
-  food = generateFood(box, canvas);
-  direction = "RIGHT";
-  score = 0;
-  clearInterval(gameInterval) //stoppe un potentiel ancient intervalle de jeux
-  gameInterval = setInterval(draw, gameSpeed); // Stockage de l'identifiant de l'intervalle
-}
+//Initialisation de la Pause
+document.addEventListener("keydown", (event) => {{
+    if (event.code === "Space"){
+      isPaused = !isPaused; //Active la pause a la perrsion de la touche espace
+      return;
+    }
+    direction = handleDirectionChange(event, direction);
+  }})
 
-function draw() {
-  //Reset du canvas avant de le redessiner
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-  //Initialisation du deplacment du serpent
-  const result = moveSnake(snake, direction, box, food);
-  snake = result.snake;
-
-  //Initialisation des collisions
-  const head = snake[0];
-  const body = snake.slice(1);
-
-  if (checkWallCollision(head, canvas, box) || checkCollision(head, body)){
-    clearInterval(gameInterval);
-    ctx.fillStyle = "red";
-    ctx.font = "30px Arial";
-    ctx.fillText("Vous avez perdu!", canvas.width/ 4, canvas.height / 2);
-    return;
+  function startGame() {
+    snake = initSnake();
+    food = generateFood(box, canvas);
+    direction = "RIGHT";
+    score = 0;
+    clearInterval(gameInterval) //stoppe un potentiel ancient intervalle de jeux
+    gameInterval = setInterval(draw, gameSpeed); // Stockage de l'identifiant de l'intervalle
   }
 
-  if(result.ateFood) {
-    food = generateFood(box, canvas);
-    score += 10;
+  function draw() {
+  if(!isPaused){
+    //Reset du canvas avant de le redessiner
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+    //Initialisation de la logique de manger de la nourriture
+    const result = moveSnake(snake, direction, box, food);
+    snake = result.snake;
+
+    //Initialisation des collisions
+    const head = snake[0];
+    const body = snake.slice(1);
+
+    if (checkWallCollision(head, canvas, box) || checkCollision(head, body)){
+      clearInterval(gameInterval);
+      ctx.fillStyle = "red";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = "30px Arial";
+      ctx.fillText("Vous avez perdu!", canvas.width/ 2, canvas.height / 2);
+      return;
+    }
+
+    if(result.ateFood) {
+      food = generateFood(box, canvas);
+      score += 10;
+    }
+      
+    //Dessin du serpent, Nourriture et score
+    drawFood(ctx, food, box)
+    drawSnake(ctx, snake, box);
+    drawScore(ctx, score)
+  }
+
+    //Dessin de la Pause
+  if(isPaused){
+    ctx.fillStyle = "black";
+    ctx.font = "40px Arial";
+    ctx.textAlign = "center"
+    ctx.fillText("PAUSE", canvas.width / 2, canvas.height / 2);
   }
   
-  //Dessin du serpent, Nourriture et score
-  drawFood(ctx, food, box)
-  drawSnake(ctx, snake, box);
-  drawScore(ctx, score)
 }
 
 startGame();
