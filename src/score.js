@@ -10,6 +10,8 @@
 function drawScore(ctx, score) {
   ctx.fillStyle = "black";
   ctx.font = "20px Arial"
+  ctx.textAlign = "left"
+  ctx.textBaseline = "top"
   ctx.fillText("Score :" + score, 10, 20)
 }
 export{drawScore}
